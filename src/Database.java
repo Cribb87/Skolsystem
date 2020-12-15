@@ -43,89 +43,58 @@ public class Database {
         }
         return null;
     }
-    public String printCourse(String courseToSearchAndPrint){
-        String textToPrint = null;
+    public String printCourse(String courseToSearchAndPrint) {
+        Course courseToPrint = searchCourse(courseToSearchAndPrint);
 
-        for (Course c : courseList){
-            if (courseToSearchAndPrint.equalsIgnoreCase(c.getName())){
-                textToPrint = "Kurs: " + c.getName() + "\n" + "Lärare: " + c.getTeacher().getName() + "\n" + "Studenter: ";
-                for (Person p : c.getCourseStudentList()){
-                    textToPrint += "\n" + p.getName();
-                }
-            }
+        String textToPrint = "Kurs: " + courseToPrint.getName() + "\n" + "Lärare: " + courseToPrint.getTeacher().getName() + "\n" + "Studenter: ";
+
+        for (Person p : courseToPrint.getCourseStudentList()) {
+            textToPrint += "\n" + p.getName();
         }
 
         return textToPrint;
     }
 
-    public String printTeacher(String teacherToSearchAndPrint){
-        String textToPrint = null;
-        Person teacherName = null;
+    public String printTeacher(String teacherToSearchAndPrint) {
+        Person teacher = searchTeacher(teacherToSearchAndPrint);
 
-        for (Course cor : courseList){
-            if (teacherToSearchAndPrint.equalsIgnoreCase(cor.getTeacher().getName())){
-                teacherName = cor.getTeacher();
-            }
+        String textToPrint = "Namn: " + teacher.getName() + "\n" + "Ålder: " + teacher.getAge() + "\n" + "Mail: " + teacher.getMail() + "\n" + "Telefonnummer: " + teacher.getNumber() + "\n" + teacher.getName() + " utbildar de här kurserna: ";
+
+
+        for (Course findCourse : teacher.getCourses()){
+            textToPrint += "\n" + findCourse.getName();
         }
 
-        textToPrint = "Namn: " + teacherName.getName() + "\n" + "Ålder: " + teacherName.getAge() + "\n" + "Mail: " + teacherName.getMail() + "\n" + "Telefonnummer: " + teacherName.getNumber();
 
+        textToPrint += "\n" + teacher.getName() + " är lärare över de här eleverna: ";
 
-
-        textToPrint += "\n" + teacherName.getName() + " utbildar i de här kurserna: ";
-        for (Course co : courseList){
-            if (teacherToSearchAndPrint.equalsIgnoreCase(co.getTeacher().getName())){
-
-                textToPrint += "\n" + co.getName();
-            }
-        }
-
-        textToPrint += "\n" +  teacherName.getName() + " är lärare över de här eleverna: ";
-        for (Course c : courseList){
-            if (teacherToSearchAndPrint.equalsIgnoreCase(c.getTeacher().getName())){
-
-                for (Person p : c.getCourseStudentList()){
-                    if (!textToPrint.contains(p.getName())){
-                        textToPrint += "\n" + p.getName();
-                    }
+        for (Course courseStudents : teacher.getCourses()){
+            for (Person studentInClass : courseStudents.getCourseStudentList()){
+                if (!textToPrint.contains(studentInClass.getName())){
+                    textToPrint += "\n" + studentInClass.getName();
                 }
             }
         }
+
 
         return textToPrint;
     }
 
-    public String printStudent(String studentToSearchAndPrint){
-        String textToPrint = null;
-        Person studentName = null;
+    public String printStudent(String studentToSearchAndPrint) {
+        Person studentName = searchStudent(studentToSearchAndPrint);
 
-        for (Course c : courseList){
-            for (Person p : c.getCourseStudentList()){
-                if (studentToSearchAndPrint.equalsIgnoreCase(p.getName())){
-                    studentName = p;
-                }
-            }
+        String textToPrint = "Namn: " + studentName.getName() + "\n" + "Ålder: " + studentName.getAge() + "\n" + "Mail: " + studentName.getMail() + "\n" + "Telefonnummer: " + studentName.getNumber() + "\n" + studentName.getName() + " går på dom här kurserna: ";
+
+        for (Course coursesStudentIsIn : studentName.getCourses()){
+            textToPrint += "\n" + coursesStudentIsIn.getName();
         }
 
-        textToPrint = "Namn: " + studentName.getName() + "\n" + "Ålder: " + studentName.getAge() + "\n" + "Mail: " + studentName.getMail() + "\n" + "Telefonnummer: " + studentName.getNumber();
+        textToPrint += "\n" + studentName.getName() + " blir utbildad av de här lärarna: ";
 
-        textToPrint += "\n" +  studentName.getName() + " går på dom här kurserna: ";
-        for (Course c : courseList){
-            for (Person p : c.getCourseStudentList()){
-                if (studentToSearchAndPrint.equalsIgnoreCase(p.getName())){
-                    textToPrint += "\n" + c.getName();
-                }
-            }
+        for (Course coursesStudentHas : studentName.getCourses()){
+            textToPrint += "\n" + coursesStudentHas.getTeacher().getName();
         }
-        textToPrint += "\n"+  studentName.getName() + " blir utbildad av de här lärarna: ";
 
-        for (Course co : courseList){
-            for (Person p : co.getCourseStudentList()){
-                if (studentToSearchAndPrint.equalsIgnoreCase(p.getName())){
-                    textToPrint += "\n" + co.getTeacher().getName();
-                }
-            }
-        }
 
         return textToPrint;
     }

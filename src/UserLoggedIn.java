@@ -12,6 +12,11 @@ public class UserLoggedIn extends JFrame {
     private JTextField name = new JTextField("Ange namn");
     private JTextField password = new JTextField("Ange lösenord");
     private JButton ok = new JButton("Okej");
+    private JTextField studentName = new JTextField("Namn");
+    private JTextField studentAge = new JTextField("Ålder");
+    private JTextField studentMail = new JTextField("Mail");
+    private JTextField studentPhonenumber = new JTextField("Telefonnummer");
+    private JButton addStudent = new JButton("Lägg till student");
     private JButton information = new JButton("Information");
     private JButton courseSearch = new JButton("Sök efter kurser");
     private JButton teacherSearch = new JButton("Sök efter lärare");
@@ -23,7 +28,6 @@ public class UserLoggedIn extends JFrame {
     private JPanel southPanel = new JPanel();
     private JPanel centerPanel = new JPanel();
     private Teacher teacher = new Teacher();
-
 
     public UserLoggedIn(){
 
@@ -53,6 +57,7 @@ public class UserLoggedIn extends JFrame {
 
         login.setVisible(true);
         information.setVisible(true);
+
         northPanel.add(name);
         northPanel.add(password);
         name.setVisible(false);
@@ -100,26 +105,21 @@ public class UserLoggedIn extends JFrame {
             });
             southPanel.add(ok);
             ok.addActionListener(e1 -> {
-                if (name.getText().equals(d.searchTeacher(getName())) && password.getText().equals(d.searchTeacher(teacher.getPassword())));
+                Teacher teacher = d.searchTeacher(name.getText());
+                System.out.println(teacher.getName());
+                System.out.println(teacher.getPassword());
+                if (password.getText().equals(teacher.getPassword())){
+                addNewStudent();}
+            });
+            addStudent.addActionListener(e1 -> {
+                Person student = new Person(studentName.getText(), studentAge.getText(), studentMail.getText(), studentPhonenumber.getText());
+                d.addStudent(student);
+                System.out.println(studentName.getText() + " har lagts till");
+                System.out.println(d.printStudent(student.getName()));
             });
         } );
 
         information.addActionListener(e -> {
-            bottomPanel.setLayout(new BorderLayout());
-            northPanel.setLayout(new BorderLayout());
-            northPanel.setLayout(new GridLayout(2,2));
-            southPanel.setLayout(new GridLayout(2, 2));
-            centerPanel.setLayout(new BorderLayout());
-
-            bottomPanel.add(northPanel, BorderLayout.NORTH);
-            bottomPanel.add(southPanel, BorderLayout.SOUTH);
-            bottomPanel.add(centerPanel, BorderLayout.CENTER);
-
-            southPanel.add(teacherSearch);
-            southPanel.add(studentSearch);
-            southPanel.add(courseSearch);
-            southPanel.add(infoButton);
-
             teacherSearch.setVisible(true);
             studentSearch.setVisible(true);
             courseSearch.setVisible(true);
@@ -127,13 +127,11 @@ public class UserLoggedIn extends JFrame {
             login.setVisible(false);
             information.setVisible(false);
 
-            centerPanel.add(infoField, BorderLayout.NORTH);
             centerPanel.add(searchField, BorderLayout.SOUTH);
             centerPanel.setBackground(Color.WHITE);
             infoField.setFont(new Font("Monaco", Font.PLAIN, 18));
 
             infoField.setEditable(false);
-
 
             add(bottomPanel);
             setSize(500, 500);
@@ -184,6 +182,65 @@ public class UserLoggedIn extends JFrame {
                 super.keyPressed(e);
                 if (searchField.getText().equals("Sök här")){
                     searchField.setText("");
+                }
+            }
+        });
+    }
+    private void addNewStudent (){
+        ok.setVisible(false);
+        name.setVisible(false);
+        password.setVisible(false);
+        northPanel.setLayout(new GridLayout(8,1));
+        northPanel.add(studentName);
+        northPanel.add(studentAge);
+        northPanel.add(studentMail);
+        northPanel.add(studentPhonenumber);
+        studentName.setVisible(true);
+        studentAge.setVisible(true);
+        studentMail.setVisible(true);
+        studentPhonenumber.setVisible(true);
+        northPanel.add(studentName, BorderLayout.SOUTH);
+        northPanel.add(studentAge, BorderLayout.SOUTH);
+        northPanel.add(studentMail, BorderLayout.SOUTH);
+        northPanel.add(studentPhonenumber, BorderLayout.SOUTH);
+        southPanel.add(addStudent);
+        northPanel.repaint();
+        northPanel.revalidate();
+
+
+        studentName.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (studentName.getText().equals("Namn")){
+                    studentName.setText("");
+                }
+            }
+        });
+        studentAge.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (studentAge.getText().equals("Ålder")){
+                    studentAge.setText("");
+                }
+            }
+        });
+        studentMail.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (studentMail.getText().equals("Mail")){
+                    studentMail.setText("");
+                }
+            }
+        });
+        studentPhonenumber.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (studentPhonenumber.getText().equals("Telefonnummer")){
+                    studentPhonenumber.setText("");
                 }
             }
         });
