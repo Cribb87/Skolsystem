@@ -3,20 +3,19 @@ import java.util.List;
 
 public class Database {
 
-    private Person students = new Person();
-    private Person teachers = new Person();
+    private List <Person> studentsList = new ArrayList<>();
+    private List <Teacher> teacherList = new ArrayList<>();
     private List<Course> courseList = new ArrayList<>();
 
     public void addCourse(Course course){
         courseList.add(course);
     }
 
-    public void addStudent(Person student){
-        this.students.addPerson(student);
+    public void addStudent(Person student){ studentsList.add(student);
     }
 
-    public void addTeacher(Person teacher){
-        this.teachers.addPerson(teacher);
+    public void addTeacher(Teacher teacher){
+        teacherList.add(teacher);
     }
 
     public Course searchCourse(String string){
@@ -27,17 +26,17 @@ public class Database {
         }
         return null;
     }
-    public Person searchTeacher(String string){
-        for (Person person : teachers.getPersons()) {
-            if (string.equalsIgnoreCase(person.getName())){
-                return person;
+    public Teacher searchTeacher(String string){
+        for (Teacher teacher : teacherList) {
+            if (string.equalsIgnoreCase(teacher.getName())){
+                return teacher;
             }
         }
         return null;
     }
 
     public Person searchStudent(String string){
-        for (Person person : students.getPersons()) {
+        for (Person person : studentsList) {
             if (string.equalsIgnoreCase(person.getName())){
                 return person;
             }

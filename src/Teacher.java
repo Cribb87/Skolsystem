@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Christoffer Grännby
  * Date: 2020-12-10
@@ -14,6 +17,16 @@ public class Teacher extends Person {
         super.age = age;
         super.mail = mail;
         super.number = number;
+    }
+
+    private List<Teacher> teacherList = new ArrayList<>();
+
+    public Teacher() {
+
+    }
+
+    public List<Teacher> getTeachers(){
+        return teacherList;
     }
 
     public String getPassword() {
