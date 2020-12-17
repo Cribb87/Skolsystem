@@ -12,10 +12,14 @@ public class UserLoggedIn extends JFrame {
     private JTextField name = new JTextField("Ange namn");
     private JTextField password = new JTextField("Ange lösenord");
     private JButton ok = new JButton("Okej");
-    private JTextField studentName = new JTextField("Namn");
-    private JTextField studentAge = new JTextField("Ålder");
-    private JTextField studentMail = new JTextField("Mail");
-    private JTextField studentPhonenumber = new JTextField("Telefonnummer");
+    private JLabel sName = new JLabel("Namn");
+    private JTextField studentName = new JTextField();
+    private JLabel sAge = new JLabel("Ålder");
+    private JTextField studentAge = new JTextField();
+    private JLabel sMail = new JLabel("Mail");
+    private JTextField studentMail = new JTextField();
+    private JLabel sPhonenumber = new JLabel("Telefonnummer");
+    private JTextField studentPhonenumber = new JTextField();
     private JButton addStudent = new JButton("Lägg till student");
     private JButton information = new JButton("Information");
     private JButton courseSearch = new JButton("Sök efter kurser");
@@ -187,13 +191,17 @@ public class UserLoggedIn extends JFrame {
         });
     }
     private void addNewStudent (){
+        northPanel.removeAll();
         ok.setVisible(false);
         name.setVisible(false);
         password.setVisible(false);
-        northPanel.setLayout(new GridLayout(8,1));
+        northPanel.add(sName);
         northPanel.add(studentName);
+        northPanel.add(sAge);
         northPanel.add(studentAge);
+        northPanel.add(sMail);
         northPanel.add(studentMail);
+        northPanel.add(sPhonenumber);
         northPanel.add(studentPhonenumber);
         studentName.setVisible(true);
         studentAge.setVisible(true);
@@ -206,43 +214,5 @@ public class UserLoggedIn extends JFrame {
         southPanel.add(addStudent);
         northPanel.repaint();
         northPanel.revalidate();
-
-
-        studentName.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if (studentName.getText().equals("Namn")){
-                    studentName.setText("");
-                }
-            }
-        });
-        studentAge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if (studentAge.getText().equals("Ålder")){
-                    studentAge.setText("");
-                }
-            }
-        });
-        studentMail.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if (studentMail.getText().equals("Mail")){
-                    studentMail.setText("");
-                }
-            }
-        });
-        studentPhonenumber.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if (studentPhonenumber.getText().equals("Telefonnummer")){
-                    studentPhonenumber.setText("");
-                }
-            }
-        });
     }
 }
