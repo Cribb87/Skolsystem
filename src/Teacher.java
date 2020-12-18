@@ -22,7 +22,6 @@ public class Teacher extends Person {
     private List<Teacher> teacherList = new ArrayList<>();
 
     public Teacher() {
-
     }
 
     public List<Teacher> getTeachers(){

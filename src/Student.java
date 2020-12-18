@@ -20,7 +20,6 @@ public class Student extends Person{
     private List<Student> studentList = new ArrayList<>();
 
     public Student() {
-
     }
 
     public List<Student> getStudents(){

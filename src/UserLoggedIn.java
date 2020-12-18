@@ -14,31 +14,30 @@ public class UserLoggedIn extends JFrame {
 
     Database d = new Database();
 
-    private JTextArea infoField = new JTextArea();
-    private JButton login = new JButton("Logga in");
-    private JTextField name = new JTextField("Ange namn");
-    private JTextField password = new JTextField("Ange lösenord");
-    private JButton ok = new JButton("Okej");
-    private JLabel sName = new JLabel("Namn");
-    private JTextField studentName = new JTextField();
-    private JLabel sAge = new JLabel("Ålder");
-    private JTextField studentAge = new JTextField();
-    private JLabel sMail = new JLabel("Mail");
-    private JTextField studentMail = new JTextField();
-    private JLabel sPhonenumber = new JLabel("Telefonnummer");
-    private JTextField studentPhonenumber = new JTextField();
-    private JButton addStudent = new JButton("Lägg till student");
-    private JButton information = new JButton("Information");
-    private JButton courseSearch = new JButton("Sök efter kurser");
-    private JButton teacherSearch = new JButton("Sök efter lärare");
-    private JButton studentSearch = new JButton("Sök efter elever");
-    private JButton infoButton = new JButton("Tryck för info om skolan");
-    private JTextField searchField = new JTextField("Sök här");
-    private JPanel bottomPanel = new JPanel();
-    private JPanel northPanel = new JPanel();
-    private JPanel southPanel = new JPanel();
-    private JPanel centerPanel = new JPanel();
-    private Teacher teacher = new Teacher();
+    private final JTextArea infoField = new JTextArea();
+    private final JButton login = new JButton("Logga in");
+    private final JTextField name = new JTextField("Ange namn");
+    private final JTextField password = new JTextField("Ange lösenord");
+    private final JButton ok = new JButton("Okej");
+    private final JLabel sName = new JLabel("Namn");
+    private final JTextField studentName = new JTextField();
+    private final JLabel sAge = new JLabel("Ålder");
+    private final JTextField studentAge = new JTextField();
+    private final JLabel sMail = new JLabel("Mail");
+    private final JTextField studentMail = new JTextField();
+    private final JLabel sPhonenumber = new JLabel("Telefonnummer");
+    private final JTextField studentPhonenumber = new JTextField();
+    private final JButton addStudent = new JButton("Lägg till student");
+    private final JButton information = new JButton("Information");
+    private final JButton courseSearch = new JButton("Sök efter kurser");
+    private final JButton teacherSearch = new JButton("Sök efter lärare");
+    private final JButton studentSearch = new JButton("Sök efter elever");
+    private final JButton infoButton = new JButton("Tryck för info om skolan");
+    private final JTextField searchField = new JTextField("Sök här");
+    private final JPanel bottomPanel = new JPanel();
+    private final JPanel northPanel = new JPanel();
+    private final JPanel southPanel = new JPanel();
+    private final JPanel centerPanel = new JPanel();
 
     public UserLoggedIn(){
 
@@ -80,7 +79,6 @@ public class UserLoggedIn extends JFrame {
         infoField.setFont(new Font("Monaco", Font.PLAIN, 18));
 
         infoField.setEditable(false);
-
 
         add(bottomPanel);
         setSize(500, 500);
@@ -204,6 +202,7 @@ public class UserLoggedIn extends JFrame {
             }
         });
     }
+
     private void addNewStudent (){
         northPanel.removeAll();
         ok.setVisible(false);

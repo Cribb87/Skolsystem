@@ -66,11 +66,9 @@ public class Database {
 
         String textToPrint = "Namn: " + teacher.getName() + "\n" + "Ålder: " + teacher.getAge() + "\n" + "Mail: " + teacher.getMail() + "\n" + "Telefonnummer: " + teacher.getNumber() + "\n" + teacher.getName() + " utbildar de här kurserna: ";
 
-
         for (Course findCourse : teacher.getCourses()){
             textToPrint += "\n" + findCourse.getName();
         }
-
 
         textToPrint += "\n" + teacher.getName() + " är lärare över de här eleverna: ";
 
@@ -81,8 +79,6 @@ public class Database {
                 }
             }
         }
-
-
         return textToPrint;
     }
 
@@ -100,8 +96,6 @@ public class Database {
         for (Course coursesStudentHas : studentName.getCourses()){
             textToPrint += "\n" + coursesStudentHas.getTeacher().getName();
         }
-
-
         return textToPrint;
     }
 
@@ -112,16 +106,16 @@ public class Database {
         Teacher teacherThree = new Teacher("Anders", "51", "Anders@mail.com","0735654655");
         Teacher teacherFour = new Teacher("Lars", "30","Lars@mail.com","073565465");
 
-        Course courseOne = new Course("Sexualkunskap", teacherThree);
+        Course courseOne = new Course("Svenska", teacherThree);
         Course courseTwo = new Course("Java",teacherFour);
         Course courseThree = new Course("Matematik", teacherTwo);
         Course courseFour = new Course("Idrott", teacherOne);
 
-        Student studentOne = new Student("Lily", "14", "lily@mail.com","0723221354");
+        Student studentOne = new Student("Lili", "14", "lili@mail.com","0723221354");
         Student studentTwo = new Student("Simon","12","simon_kool@mail.com", "0756516516");
         Student studentThree = new Student("Daniel", "13", "daniel_small@mail.com","98446512");
         Student studentFour = new Student("Kalle", "15" , "kalle@mail.com", "654165131");
-        Student studentFive = new Student("Sossen", "14","sosse@sosse.se", "6541321321");
+        Student studentFive = new Student("Elias", "14","elias@mail.se", "6541321321");
 
         teacherOne.addCourses(courseFour);
         teacherTwo.addCourses(courseThree);
