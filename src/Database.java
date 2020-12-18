@@ -1,9 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Christoffer Grännby
+ * Date: 2020-12-18
+ * Time: 13:39
+ * Project: Skolsystem
+ * Copyright: MIT
+ */
 public class Database {
 
-    private List <Person> studentsList = new ArrayList<>();
+    private List <Student> studentsList = new ArrayList<>();
     private List <Teacher> teacherList = new ArrayList<>();
     private List<Course> courseList = new ArrayList<>();
 
@@ -11,8 +18,7 @@ public class Database {
         courseList.add(course);
     }
 
-    public void addStudent(Person student){ studentsList.add(student);
-    }
+    public void addStudent(Student student){ studentsList.add(student); }
 
     public void addTeacher(Teacher teacher){
         teacherList.add(teacher);
@@ -35,8 +41,8 @@ public class Database {
         return null;
     }
 
-    public Person searchStudent(String string){
-        for (Person person : studentsList) {
+    public Student searchStudent(String string){
+        for (Student person : studentsList) {
             if (string.equalsIgnoreCase(person.getName())){
                 return person;
             }
@@ -48,7 +54,7 @@ public class Database {
 
         String textToPrint = "Kurs: " + courseToPrint.getName() + "\n" + "Lärare: " + courseToPrint.getTeacher().getName() + "\n" + "Studenter: ";
 
-        for (Person p : courseToPrint.getCourseStudentList()) {
+        for (Student p : courseToPrint.getCourseStudentList()) {
             textToPrint += "\n" + p.getName();
         }
 
@@ -56,7 +62,7 @@ public class Database {
     }
 
     public String printTeacher(String teacherToSearchAndPrint) {
-        Person teacher = searchTeacher(teacherToSearchAndPrint);
+        Teacher teacher = searchTeacher(teacherToSearchAndPrint);
 
         String textToPrint = "Namn: " + teacher.getName() + "\n" + "Ålder: " + teacher.getAge() + "\n" + "Mail: " + teacher.getMail() + "\n" + "Telefonnummer: " + teacher.getNumber() + "\n" + teacher.getName() + " utbildar de här kurserna: ";
 
@@ -69,7 +75,7 @@ public class Database {
         textToPrint += "\n" + teacher.getName() + " är lärare över de här eleverna: ";
 
         for (Course courseStudents : teacher.getCourses()){
-            for (Person studentInClass : courseStudents.getCourseStudentList()){
+            for (Student studentInClass : courseStudents.getCourseStudentList()){
                 if (!textToPrint.contains(studentInClass.getName())){
                     textToPrint += "\n" + studentInClass.getName();
                 }
@@ -81,7 +87,7 @@ public class Database {
     }
 
     public String printStudent(String studentToSearchAndPrint) {
-        Person studentName = searchStudent(studentToSearchAndPrint);
+        Student studentName = searchStudent(studentToSearchAndPrint);
 
         String textToPrint = "Namn: " + studentName.getName() + "\n" + "Ålder: " + studentName.getAge() + "\n" + "Mail: " + studentName.getMail() + "\n" + "Telefonnummer: " + studentName.getNumber() + "\n" + studentName.getName() + " går på dom här kurserna: ";
 
@@ -111,11 +117,31 @@ public class Database {
         Course courseThree = new Course("Matematik", teacherTwo);
         Course courseFour = new Course("Idrott", teacherOne);
 
-        Person studentOne = new Person("Lily", "14", "lily@mail.com","0723221354");
-        Person studentTwo = new Person("Simon","12","simon_kool@mail.com", "0756516516");
-        Person studentThree = new Person("Daniel", "13", "daniel_small@mail.com","98446512");
-        Person studentFour = new Person("Kalle", "15" , "kalle@mail.com", "654165131");
-        Person studentFive = new Person("Sossen", "14","sosse@sosse.se", "6541321321");
+        Student studentOne = new Student("Lily", "14", "lily@mail.com","0723221354");
+        Student studentTwo = new Student("Simon","12","simon_kool@mail.com", "0756516516");
+        Student studentThree = new Student("Daniel", "13", "daniel_small@mail.com","98446512");
+        Student studentFour = new Student("Kalle", "15" , "kalle@mail.com", "654165131");
+        Student studentFive = new Student("Sossen", "14","sosse@sosse.se", "6541321321");
+
+        teacherOne.addCourses(courseFour);
+        teacherTwo.addCourses(courseThree);
+        teacherThree.addCourses(courseOne);
+        teacherFour.addCourses(courseTwo);
+
+        studentOne.addCourses(courseOne);
+        studentOne.addCourses(courseFour);
+        studentOne.addCourses(courseThree);
+
+        studentTwo.addCourses(courseOne);
+
+        studentThree.addCourses(courseOne);
+        studentThree.addCourses(courseTwo);
+
+        studentFour.addCourses(courseFour);
+
+        studentFive.addCourses(courseTwo);
+        studentFive.addCourses(courseThree);
+        studentFive.addCourses(courseFour);
 
         addCourse(courseOne);
         addCourse(courseTwo);

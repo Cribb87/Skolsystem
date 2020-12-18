@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Christoffer Grännby
+ * Date: 2020-12-18
+ * Time: 13:39
+ * Project: Skolsystem
+ * Copyright: MIT
+ */
 public class Person {
 
     protected String name;
@@ -19,8 +26,6 @@ public class Person {
 
     private List<Course> courseList = new ArrayList<>();
 
-    private List<Person> personList = new ArrayList<>();
-
     public String getName() {
         return name;
     }
@@ -37,10 +42,6 @@ public class Person {
         return number;
     }
 
-    public void addPerson(Person person){
-        personList.add(person);
-    }
-
     public void addCourses(Course course){
         courseList.add(course);
     }
@@ -49,7 +50,4 @@ public class Person {
         return courseList;
     }
 
-    public List<Person> getPersons(){
-        return personList;
-    }
 }

@@ -3,9 +3,9 @@ import java.util.List;
 
 /**
  * Created by Christoffer Grännby
- * Date: 2020-12-10
- * Time: 11:24
- * Project: NoobGruppen
+ * Date: 2020-12-18
+ * Time: 13:39
+ * Project: Skolsystem
  * Copyright: MIT
  */
 public class Teacher extends Person {

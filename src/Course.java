@@ -1,13 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Christoffer Grännby
+ * Date: 2020-12-18
+ * Time: 13:39
+ * Project: Skolsystem
+ * Copyright: MIT
+ */
 public class Course {
 
     private String name;
-    private List<Person> courseStudentList = new ArrayList<>();
-    private Person teacher;
+    private List<Student> courseStudentList = new ArrayList<>();
+    private Teacher teacher;
 
-    public Course(String name, Person teacher) {
+    public Course(String name, Teacher teacher) {
         this.name = name;
         this.teacher = teacher;
     }
@@ -16,17 +23,17 @@ public class Course {
         return name;
     }
 
-    public List<Person> getCourseStudentList() {
+    public List<Student> getCourseStudentList() {
         return courseStudentList;
     }
 
-    public Person getTeacher() {
+    public Teacher getTeacher() {
         return teacher;
     }
 
     private String getStudentsInCourse(){
         String string = "";
-        for (Person s: courseStudentList) {
+        for (Student s: courseStudentList) {
             string += s.getName() + "\n";
         }
         return string;
@@ -41,7 +48,7 @@ public class Course {
                 '}';
     }
 
-    public void addStudent(Person student){
+    public void addStudent(Student student){
         courseStudentList.add(student);
     }
 }

@@ -3,6 +3,13 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Created by Christoffer Grännby
+ * Date: 2020-12-18
+ * Time: 13:39
+ * Project: Skolsystem
+ * Copyright: MIT
+ */
 public class UserLoggedIn extends JFrame {
 
     Database d = new Database();
@@ -116,8 +123,15 @@ public class UserLoggedIn extends JFrame {
                 addNewStudent();}
             });
             addStudent.addActionListener(e1 -> {
-                Person student = new Person(studentName.getText(), studentAge.getText(), studentMail.getText(), studentPhonenumber.getText());
+                Student student = new Student(studentName.getText(), studentAge.getText(), studentMail.getText(), studentPhonenumber.getText());
                 d.addStudent(student);
+                if
+                    (studentName.getText().isEmpty()
+                    || studentAge.getText().isEmpty()
+                    || studentMail.getText().isEmpty()
+                    || studentPhonenumber.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Du har inte angivit fullständiga uppgifter");
+                    }
                 System.out.println(studentName.getText() + " har lagts till");
                 System.out.println(d.printStudent(student.getName()));
             });
@@ -155,7 +169,7 @@ public class UserLoggedIn extends JFrame {
 
         studentSearch.addActionListener(e->{
             if (!searchField.getText().isEmpty()) {
-                Person student = d.searchStudent(searchField.getText());
+                Student student = d.searchStudent(searchField.getText());
                 if (student == null)
                 infoField.setText("Eleven finns inte");
                 else infoField.setText(d.printStudent(searchField.getText()));
