@@ -15,6 +15,8 @@ public class Person {
     protected String mail;
     protected String number;
 
+    private List<Course> courseList = new ArrayList<>();
+
     public Person(){}
 
     public Person(String name, String age, String mail, String number) {
@@ -23,8 +25,6 @@ public class Person {
         this.mail = mail;
         this.number = number;
     }
-
-    private List<Course> courseList = new ArrayList<>();
 
     public String getName() {
         return name;

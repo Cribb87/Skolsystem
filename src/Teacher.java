@@ -10,7 +10,9 @@ import java.util.List;
  */
 public class Teacher extends Person {
 
-    String password = "1234";
+    protected final String password = "1234";
+
+    private List<Teacher> teacherList = new ArrayList<>();
 
     public Teacher(String name, String age, String mail, String number){
         super.name = name;
@@ -18,8 +20,6 @@ public class Teacher extends Person {
         super.mail = mail;
         super.number = number;
     }
-
-    private List<Teacher> teacherList = new ArrayList<>();
 
     public Teacher() {
     }

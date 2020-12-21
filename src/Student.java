@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class Student extends Person{
 
+    private List<Student> studentList = new ArrayList<>();
+
     public Student(String name, String age, String mail, String number){
         super.name = name;
         super.age = age;
         super.mail = mail;
         super.number = number;
     }
-
-    private List<Student> studentList = new ArrayList<>();
 
     public Student() {
     }
